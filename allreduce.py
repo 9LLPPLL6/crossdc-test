@@ -41,7 +41,7 @@ def main():
         rank, world_size, device = init_distributed(backend='hccl')
         
         # 创建示例张量（不同rank创建不同值）
-        tensor = torch.ones(1).npu(device) * (rank + 1)  # 将张量放到对应NPU
+        tensor = torch.ones(1,dtype=torch.float32).npu(device) * (rank + 1)  # 将张量放到对应NPU
         
         print(f"Rank {rank} 初始值: {tensor.cpu().numpy()}", flush=True)
         
